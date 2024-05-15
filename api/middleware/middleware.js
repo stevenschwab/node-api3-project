@@ -1,5 +1,11 @@
 function logger(req, res, next) {
-  // DO YOUR MAGIC
+  const date = new Date();
+  console.log(`
+    REQUEST METHOD: ${req.method}
+    REQUEST URL: ${req.originalUrl}
+    TIMESTAMP: ${date.toLocaleString()}
+  `);
+  next();
 }
 
 function validateUserId(req, res, next) {
