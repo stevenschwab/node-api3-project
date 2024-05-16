@@ -14,7 +14,6 @@ function logger(req, res, next) {
 async function validateUserId(req, res, next) {
   try {
     const user = await Users.getById(req.params.id);
-    console.log('user', user)
     if (user) {
       req.user = user;
       next();
@@ -41,8 +40,17 @@ function validateUser(req, res, next) {
 }
 
 function validatePost(req, res, next) {
-  // DO YOUR MAGIC
-  next()
+  const { text } = req.body;
+  if (
+    text !== undefined &&
+    typeof text === 'string' &&
+    text.length &&
+    text.trim().length
+  ) {
+    next()
+  } else {
+    next({ status: 400, message: "missing required text field" });
+  }
 }
 
 module.exports = {
