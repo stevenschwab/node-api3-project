@@ -11,16 +11,29 @@ function logger(req, res, next) {
   next();
 }
 
-function validateUserId(req, res, next) {
-  // DO YOUR MAGIC
+async function validateUserId(req, res, next) {
+  try {
+    const user = await Users.getById(req.params.id);
+    console.log('user', user)
+    if (user) {
+      req.user = user;
+      next();
+    } else {
+      next({ status: 404, message: "user not found" });
+    }
+  } catch (err) {
+    next(err)
+  }
 }
 
 function validateUser(req, res, next) {
   // DO YOUR MAGIC
+  next()
 }
 
 function validatePost(req, res, next) {
   // DO YOUR MAGIC
+  next()
 }
 
 module.exports = {
