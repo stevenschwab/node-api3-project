@@ -1,5 +1,4 @@
 const Users = require('../users/users-model');
-const Posts = require('../posts/posts-model');
 
 function logger(req, res, next) {
   const date = new Date();
