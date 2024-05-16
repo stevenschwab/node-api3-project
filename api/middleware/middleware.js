@@ -32,6 +32,7 @@ function validateUser(req, res, next) {
     name.length &&
     name.trim().length
   ) {
+    req.name = name.trim()
     next()
   } else {
     next({ status: 400, message: 'missing required name field' });
