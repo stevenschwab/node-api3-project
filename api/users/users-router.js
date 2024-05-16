@@ -63,6 +63,7 @@ router.use((error, req, res, next) => { // eslint-disable-line
   res.status(error.status || 500).json({
     message: error.message,
     customMessage: 'Something bad happened inside the hubs router',
+    stack: error.stack,
   });
 });
 
